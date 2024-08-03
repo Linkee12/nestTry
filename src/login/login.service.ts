@@ -1,6 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
+import { sha256 } from 'js-sha256';
 
 @Injectable()
 export class LoginService {
@@ -15,7 +16,7 @@ export class LoginService {
         email: email,
       },
     });
-    if (user?.password !== pass) {
+    if (user?.password !== sha256(pass + user.salt)) {
       throw new UnauthorizedException();
     }
     const payload = { sub: user.id, username: user.username };
