@@ -16,7 +16,7 @@ export class LoginService {
         email: email,
       },
     });
-    if (user?.password !== sha256(pass + user.salt)) {
+    if (user?.password !== sha256(pass + user?.salt)) {
       throw new UnauthorizedException();
     }
     const payload = { sub: user.id, username: user.username };
