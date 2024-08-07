@@ -5,12 +5,8 @@ import { PrismaService } from './prisma/prisma.service';
 import { LoginModule } from './login/login.module';
 import { ConfigModule } from '@nestjs/config';
 import { LoginController } from './login/login.controller';
-import { RegistrationController } from './registration/registration.controller';
 import { RegController } from './reg/reg.controller';
-import { RegService } from './reg/reg.service';
 import { UsersService } from './users/users.service';
-import { UsersModule } from './users/users.module';
-import { RegModule } from './reg/reg.module';
 
 @Module({
   imports: [
@@ -18,10 +14,8 @@ import { RegModule } from './reg/reg.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    UsersModule,
-    RegModule,
   ],
-  controllers: [AppController, LoginController, RegistrationController, RegController],
-  providers: [AppService, PrismaService, RegService, UsersService],
+  controllers: [AppController, LoginController, RegController],
+  providers: [AppService, PrismaService, UsersService],
 })
 export class AppModule {}

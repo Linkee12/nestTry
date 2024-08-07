@@ -20,8 +20,7 @@ export class UsersService {
         username: username,
         email: email,
         password: pass,
-        salt: await bcrypt.genSalt();
-      
+        salt: await bcrypt.genSalt(5),
       },
     });
   }
