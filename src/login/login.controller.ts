@@ -4,7 +4,9 @@ import { LoginService } from './login.service';
 
 @Controller('login')
 export class LoginController {
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService) {
+    console.log('asasd');
+  }
   @Post()
   @HttpCode(200)
   async create(@Body() userBody: loginBodyDto): Promise<string> {
