@@ -16,7 +16,7 @@ export class RegController {
       );
       return 'Registration is successful';
     } else {
-      return 'User is exist';
+      return 'The user already exist';
     }
   }
 }

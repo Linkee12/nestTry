@@ -15,12 +15,14 @@ export class UsersService {
     return user;
   }
   async addUser(username: string, email: string, pass: string) {
+    const salt = await bcrypt.genSalt();
+    const password = await bcrypt.hash(pass, salt);
     await this.prisma.users.create({
       data: {
         username: username,
         email: email,
-        password: pass,
-        salt: await bcrypt.genSalt(5),
+        password: password,
+        salt: salt,
       },
     });
   }

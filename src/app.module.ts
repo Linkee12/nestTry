@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { LoginController } from './login/login.controller';
 import { RegController } from './reg/reg.controller';
 import { UsersService } from './users/users.service';
+import { GetNewTokenController } from './get-new-token/get-new-token.controller';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { UsersService } from './users/users.service';
       isGlobal: true,
     }),
   ],
-  controllers: [AppController, LoginController, RegController],
+  controllers: [AppController, LoginController, RegController, GetNewTokenController],
   providers: [AppService, PrismaService, UsersService],
 })
 export class AppModule {}
