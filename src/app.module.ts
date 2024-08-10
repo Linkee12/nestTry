@@ -9,6 +9,13 @@ import { RegController } from './reg/reg.controller';
 import { UsersService } from './users/users.service';
 import { GetNewTokenController } from './get-new-token/get-new-token.controller';
 import { AuthService } from './auth/auth.service';
+import { BasketController } from './basket/basket.controller';
+import { GetCategoryController } from './getcategory/getcategory.controller';
+import { GetCategoryService } from './getcategory/getcategory.service';
+import { BasketService } from './basket/basket.service';
+import { JwtService } from '@nestjs/jwt';
+import { GetproductsController } from './getproducts/getproducts.controller';
+import { GetproductsService } from './getproducts/getproducts.service';
 
 @Module({
   imports: [
@@ -22,7 +29,19 @@ import { AuthService } from './auth/auth.service';
     LoginController,
     RegController,
     GetNewTokenController,
+    BasketController,
+    GetCategoryController,
+    GetproductsController,
   ],
-  providers: [AppService, PrismaService, UsersService, AuthService],
+  providers: [
+    JwtService,
+    AppService,
+    PrismaService,
+    UsersService,
+    AuthService,
+    BasketService,
+    GetCategoryService,
+    GetproductsService,
+  ],
 })
 export class AppModule {}
