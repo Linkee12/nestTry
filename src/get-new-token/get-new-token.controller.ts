@@ -1,14 +1,20 @@
-import { Controller, Get, Headers } from '@nestjs/common';
+import { Controller, Post, UseGuards, Body } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { AuthService } from 'src/auth/auth.service';
+import { refreshBodyDto } from './refreshBodyDto';
 
 @Controller('getNewToken')
 export class GetNewTokenController {
-  @Get()
-  async findAll(@Headers('authorization') authorization: string) {
-    if (typeof authorization === 'string' &&) {
-      const newToken = await getNewToken(token);
-      return { newToken };
-    } else {
-      return 'Permission denied';
-    }
+  constructor(private jwtService: JwtService) {}
+
+  @UseGuards(AuthService)
+  @Post()
+  async getNewToken(@Body() refreshBody: refreshBodyDto) {
+    const newToken = await this.jwtService.signAsync({
+      username: refreshBody.username,
+      sub: refreshBody.id,
+    });
+
+    return { access_token: newToken };
   }
 }

@@ -8,6 +8,7 @@ import { LoginController } from './login/login.controller';
 import { RegController } from './reg/reg.controller';
 import { UsersService } from './users/users.service';
 import { GetNewTokenController } from './get-new-token/get-new-token.controller';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [
@@ -16,7 +17,12 @@ import { GetNewTokenController } from './get-new-token/get-new-token.controller'
       isGlobal: true,
     }),
   ],
-  controllers: [AppController, LoginController, RegController, GetNewTokenController],
-  providers: [AppService, PrismaService, UsersService],
+  controllers: [
+    AppController,
+    LoginController,
+    RegController,
+    GetNewTokenController,
+  ],
+  providers: [AppService, PrismaService, UsersService, AuthService],
 })
 export class AppModule {}
